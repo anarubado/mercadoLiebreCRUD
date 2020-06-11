@@ -7,19 +7,22 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 function leerJson(){
-	const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-	return products;
-}
+	const productsObject = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+	return productsObject;
+};
 
 function guardarJson(){
-	let products = leerJson();
-	products = fs.writeFileSync(productsFilePath);
-}
+	let productsObject = leerJson();
+	productsJson = fs.writeFileSync(productsFilePath, productsObject, 'utf-8');
+	return productsJson;
+};
 
 const controller = {
 	// Root - Show all products
 	root: (req, res) => {
-		// Do the magic
+		let arrayProducts = leerJson();				// Obtengo el objeto literal con todos los productos
+		
+		return res.render('products', {arrayProducts, toThousand});		
 	},
 
 	// Detail - Detail from one product
@@ -28,7 +31,7 @@ const controller = {
 			return product.id == req.params.productId;
 		});
 
-		return res.render('detail', {product});
+		return res.render('detail', {product, toThousand});
 	},
 
 	// Create - Form to create
@@ -52,7 +55,7 @@ const controller = {
 
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-		// Do the magic
+		
 	}
 };
 

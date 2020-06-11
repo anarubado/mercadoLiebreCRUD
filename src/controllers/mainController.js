@@ -17,7 +17,7 @@ const controller = {
 			return product.category == "in-sale";						// Array de in-sale products
 		});
 
-		return res.render('index', {visited, inSale});
+		return res.render('index', {visited, inSale, toThousand});
 		
 	},
 	search: (req, res) => {
