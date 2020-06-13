@@ -1,33 +1,20 @@
-const fs = require('fs');
-const path = require('path');
+const jsonModule = require('../modules/jsonModule');
+const productModule = jsonModule('productsDataBase');
+
 const { url } = require('inspector');
 
-const productsFilePath = path.join(__dirname, '..', 'data', 'productsDataBase.json');
-//const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-function leerJson(){
-	let productsObject = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-	return productsObject;
-}
-
-function guardarJson(products){
-	let productsJson = JSON.stringify(products, null, " ");
-	let jsonGuardado = fs.writeFileSync(productsFilePath, productsJson);
-	return jsonGuardado;
-};
 
 const controller = {
 	// Root - Show all products
 	root: (req, res) => {	
-		let products = leerJson();	
+		let products = productModule.readJson();
 		return res.render('products', {products, toThousand});	
 	},
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		let products = leerJson();
+		let products = productModule.readJson();
 		let product = products.find(function(product){
 			return product.id == req.params.productId;
 		});
@@ -42,7 +29,6 @@ const controller = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		let products = leerJson();
 		let productAdded = {
 			id: parseInt(products.length + 1),
 			name: req.body.name,
@@ -53,15 +39,13 @@ const controller = {
 			category: req.body.category
 		};
 
-		let totalProducts = [...products, productAdded];
-
-		guardarJson(totalProducts);
+		productModule.save(productAdded);
 		return res.redirect('/');
 	},
 
 	// Update - Form to edit
 	edit: (req, res) => {
-		let products = leerJson();
+		let products = productModule.readJson();
 		let product = products.find(function(product){
 			return product.id == req.params.productId;
 		});
@@ -71,7 +55,7 @@ const controller = {
 
 	// Update - Method to update
 	update: (req, res) => {
-		let products = leerJson();
+		let products = productModule.readJson();
 		let productsUpdate = products.map(function(product){
 			if (product.id != req.params.productId){
 				return product;
@@ -87,13 +71,13 @@ const controller = {
 			}
 		})
 
-		guardarJson(productsUpdate);
+		productModule.writeJson(productsUpdate);
 		return res.redirect('/');
 	},
 
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-		let products = leerJson();
+		let products = productModule.readJson();
 		for (let i = 0; i < products.length; i++){
 			if (products[i].id == req.params.productId){
 				products.splice(i, 1);
@@ -101,7 +85,7 @@ const controller = {
 			}
 		}
 		
-		guardarJson(totalProducts);
+		productModule.writeJson(totalProducts);
 
 		return res.redirect('/');
 	}
