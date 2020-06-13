@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { url } = require('inspector');
 
 const productsFilePath = path.join(__dirname, '..', 'data', 'productsDataBase.json');
 //const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -14,14 +15,14 @@ function leerJson(){
 function guardarJson(products){
 	let productsJson = JSON.stringify(products, null, " ");
 	let jsonGuardado = fs.writeFileSync(productsFilePath, productsJson);
-	return jsonGuardado;	
+	return jsonGuardado;
 };
 
 const controller = {
 	// Root - Show all products
 	root: (req, res) => {	
 		let products = leerJson();	
-		return res.render('products', {products, toThousand});		
+		return res.render('products', {products, toThousand});	
 	},
 
 	// Detail - Detail from one product
@@ -43,12 +44,12 @@ const controller = {
 	store: (req, res) => {
 		let products = leerJson();
 		let productAdded = {
-			id: products.length + 1,
+			id: parseInt(products.length + 1),
 			name: req.body.name,
 			description: req.body.description,
-			price: req.body.price,
-			discount: req.body.discount,
-			image: '../../public/images/products/default-image.jpg',
+			price: parseInt(req.body.price),
+			discount: parseInt(req.body.discount),
+			image: 'default-image.jpg',
 			category: req.body.category
 		};
 
@@ -65,7 +66,7 @@ const controller = {
 			return product.id == req.params.productId;
 		});
 
-		return res.render('product-edit-form', {product, toThousand});
+		return res.render('product-edit-form', {product});
 	},
 
 	// Update - Method to update
@@ -76,11 +77,11 @@ const controller = {
 				return product;
 			}		
 			return product = {
-				id: product.id,
+				id: parseInt(product.id),
 				name: req.body.name,
 				description: req.body.description,
-				price: req.body.price,
-				discount: req.body.discount,
+				price: parseInt(req.body.price),
+				discount: parseInt(req.body.discount),
 				image: product.image,
 				category: req.body.category				
 			}

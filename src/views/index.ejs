@@ -27,10 +27,10 @@
 							</figure>
 							<article class="product-box_data">
 								<% if (product.discount != 0) { %>
-									<h2> $<%= toThousand(product.price - product.discount / 100 * product.price) %></h2>
-									<span>DISCOUNT <%= product.discount %>% OFF</span>								 
+									<h2> $<%= Math.round((product.price - product.discount / 100 * product.price) * 100) / 100 %></h2>
+									<span>DISCOUNT <%= Math.round((product.discount) * 100) / 100 %>% OFF</span>								 
 								<% } else{ %>
-									<h2> $<%= toThousand(product.price) %> </h2>
+									<h2> $<%= Math.round((product.price) * 100) / 100 %> </h2>
 								<% } %>								
 								<p><%= product.name %></p>
 								<i class="fas fa-truck"></i>
@@ -59,10 +59,10 @@
 							</figure>
 							<article class="product-box_data">
 								<% if (product.discount != 0) { %>
-									<h2> $<%= toThousand(product.price - product.discount / 100 * product.price) %></h2>
-									<span>DISCOUNT <%= product.discount %>% OFF</span>								 
+									<h2> $<%= Math.round((product.price - product.discount / 100 * product.price) * 100) / 100 %></h2>
+									<span>DISCOUNT <%= Math.round((product.discount) * 100) / 100 %>% OFF</span>								 
 								<% } else{ %>
-									<h2> $<%= toThousand(product.price) %> </h2>
+									<h2> $<%= Math.round((product.price) * 100) / 100 %> </h2>
 								<% } %>								
 								<p><%= product.name %> </p>
 								<i class="fas fa-truck"></i>

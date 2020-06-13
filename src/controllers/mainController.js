@@ -27,11 +27,10 @@ const controller = {
 		
 	},
 	search: (req, res) => {
-	//	let busqueda = req.query
-	//	res.render('results', {products, busqueda});
-	//},
-	}
-
+		let products = leerJson();
+		let busqueda = req.query.keywords
+		res.render('results', {products, busqueda, toThousand});
+	},
 }
 
 module.exports = controller;

@@ -2,11 +2,11 @@
  {
   "id": 1,
   "name": "Cafetera Moulinex Dolce Gusto Edited",
+  "description": "Cafetera Dolce Gusto Lumio. La cafetera Dolce Gusto Lumio es de variedad automática que ha llegado con un diseño radical al que nos tenía acostumbrados Dolce Gusto.En este post te contamos todo lo que necesitas saber sobre ella, desde sus características técnicas hasta la calidad de las cápsulas o price.",
   "price": 100,
   "discount": 50,
-  "category": "visited",
-  "description": "Cafetera Dolce Gusto Lumio. La cafetera Dolce Gusto Lumio es de variedad automática que ha llegado con un diseño radical al que nos tenía acostumbrados Dolce Gusto.En este post te contamos todo lo que necesitas saber sobre ella, desde sus características técnicas hasta la calidad de las cápsulas o price.",
-  "image": "img-cafetera-moulinex.jpg"
+  "image": "img-cafetera-moulinex.jpg",
+  "category": "visited"
  },
  {
   "id": 2,
@@ -121,7 +121,7 @@
   "name": "Sony S6700 Reproductor De Blu-ray ",
   "description": "Disfruta de tus películas favoritas con hasta cuatro veces más detalles que Full HD, gracias a la conversión de señales 4K. Cuando se conecta a un televisor compatible,un procesador de video avanzado convierte el video estándar en una señal cercana a la resolución 4K (3840 x 2160). Con ocho millones de píxeles, obtendrás imágenes más nítidas y detalladas, y la mayor calidad de la image te permite sentarte más cerca de la pantalla para que te sientas como en el cine.",
   "price": 10999,
-  "discount": 5,
+  "discount": 10,
   "image": "img-sony-blueray.jpg",
   "category": "visited"
  },
@@ -142,5 +142,14 @@
   "category": "in-sale",
   "description": "Deja que la música dance cobre vida con EXTRA BASS™ Anima el ambiente con EXTRA BASS™1. Un radiador pasivo trabaja con el parlante monoaural para potenciar los tonos bajos y mejorar los graves, a pesar del tamaño compacto. ",
   "image": "img-parlante-sony.jpg"
+ },
+ {
+  "id": 18,
+  "name": "Product de Ani",
+  "description": "Description Product de Ani",
+  "price": 100000,
+  "discount": 90,
+  "image": "default-image.jpg",
+  "category": "visited"
  }
 ]

@@ -28,17 +28,17 @@
 						
 							<p class="product-detail-price small">
 								<% if (product.discount != 0) { %>
-									<span>$<%= toThousand(product.price) %> </span>
+									<span>$<%= Math.round((product.price) * 100) / 100 %></span>
 									/
-									<b>DISCOUNT <%= product.discount %>  % OFF</b>								 
+									<b>DISCOUNT <%= Math.round((product.discount) * 100) / 100 %>% OFF</b>								 
 								<% } %>									
 							</p>
 
 							<p class="product-detail-price">
 								<% if (product.discount != 0) { %>
-									$<%= toThousand(product.price - product.discount / 100 * product.price) %>								 
+									$<%= Math.round((product.price - product.discount / 100 * product.price) * 100) / 100 %>								 
 								<% } else{ %>
-									$<%= toThousand(product.price) %>
+									$<%= Math.round((product.price) * 100) / 100 %>
 								<% } %>
 							</p>
 
